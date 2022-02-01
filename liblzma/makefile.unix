@@ -1,0 +1,64 @@
+# Makefile for liblzma.a
+
+LIB_TARGET = liblzma.a
+CC = gcc
+CFLAGS = -c -O2 -I/usr/include
+
+LIBOBJS = LibLzmaShells.o 7zAlloc.o 7zBuf.o 7zBuf2.o 7zCrc.o 7zCrcOpt.o 7zDec.o 7zIn.o CpuArch.o LzmaDec.o Lzma2Dec.o Bra86.o Bcj2.o 7zFile.o 7zStream.o
+
+default all: $(LIB_TARGET)
+
+LibLzmaShells.o: LibLzmaShells.c
+	$(CC) $(CFLAGS) LibLzmaShells.c
+
+7zAlloc.o: 7zAlloc.c
+	$(CC) $(CFLAGS) 7zAlloc.c
+
+7zBuf.o: 7zBuf.c
+	$(CC) $(CFLAGS) 7zBuf.c
+
+7zBuf2.o: 7zBuf2.c
+	$(CC) $(CFLAGS) 7zBuf2.c
+
+7zCrc.o: 7zCrc.c
+	$(CC) $(CFLAGS) 7zCrc.c
+
+7zCrcOpt.o: 7zCrc.c
+	$(CC) $(CFLAGS) 7zCrcOpt.c
+
+7zDec.o: 7zDec.c
+	$(CC) $(CFLAGS) 7zDec.c
+
+7zIn.o: 7zIn.c
+	$(CC) $(CFLAGS) 7zIn.c
+
+CpuArch.o: CpuArch.c
+	$(CC) $(CFLAGS) CpuArch.c
+
+LzmaDec.o: LzmaDec.c
+	$(CC) $(CFLAGS) LzmaDec.c
+
+Lzma2Dec.o: Lzma2Dec.c
+	$(CC) $(CFLAGS) Lzma2Dec.c
+
+Bra86.o: Bra86.c
+	$(CC) $(CFLAGS) Bra86.c
+
+Bcj2.o: Bcj2.c
+	$(CC) $(CFLAGS) Bcj2.c
+
+7zFile.o: 7zFile.c
+	$(CC) $(CFLAGS) 7zFile.c
+
+7zStream.o: 7zStream.c
+	$(CC) $(CFLAGS) 7zStream.c
+
+$(LIB_TARGET): $(LIBOBJS)
+	echo making library
+	rm -rf $@
+	ar rv $@ $(LIBOBJS)
+	echo $@ is made.
+
+clean:
+	echo cleaning
+	rm -rf *.o
